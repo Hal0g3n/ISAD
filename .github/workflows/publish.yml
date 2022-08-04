@@ -1,4 +1,4 @@
-name: publish to gh-Pages
+name: Publish to gh-Pages
 
 on:
   push:
@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2 # Only works with v2
       - uses: subosito/flutter-action@v1
-      - uses: erickzanardo/flutter-gh-pages@v6
+      - uses: bluefireteam/flutter-gh-pages@v8
         with:
           baseHref: /ISAD/
