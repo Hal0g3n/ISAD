@@ -1,8 +1,10 @@
-module.exports = {
+const { defineConfig } = require("@vue/cli-service");
+
+module.exports = defineConfig({
     publicPath: process.env.NODE_ENV == "production" ? "/ISAD/" : "/",
     lintOnSave: false,
     transpileDependencies: [
-        "vuetify",
+      "vuetify"
     ],
     chainWebpack: (config) => {
         config.module
@@ -10,4 +12,4 @@ module.exports = {
         .use("ts-loader")
         .loader("ts-loader");
     },
-};
+});

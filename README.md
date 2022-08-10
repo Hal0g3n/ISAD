@@ -2,5 +2,5 @@
 ***I***ntelligent ***S***creening of ***A***lzheimer's ***D***isease
 
 A Quick Test for Alzheimer's Disease made simple. \
-~~[Website](http://example.com)~~ \
+[Website](https://haloen.github.io/ISAD/) \
 This was made for Splash Awards 2022
