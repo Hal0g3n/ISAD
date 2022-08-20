@@ -1,27 +1,34 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Dashboard from "@/views/Dashboard.vue";
-import Projects from "@/views/Projects.vue";
-import Team from "@/views/Team.vue";
+import CDT from "@/views/CDT.vue";
+import MMSE from "@/views/MMSE.vue";
+import CVFT from "@/views/CVFT.vue";
+import Results from "@/views/Results.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
-        path: "/",
-        name: "Dashboard",
-        component: Dashboard
+        path: "/CDT",
+        name: "CDT",
+        alias: "/",
+        component: CDT
     },
     {
-        path: "/projects",
-        name: "Projects",
-        component: Projects
+        path: "/MMSE",
+        name: "MMSE",
+        component: MMSE
     },
     {
-        path: "/team",
-        name: "Team",
-        component: Team
-    }
+        path: "/CVFT",
+        name: "CVFT",
+        component: CVFT
+    },
+    {
+        path: "/Results",
+        name: "Results",
+        component: Results
+    },
 ];
 
 const router = new VueRouter({

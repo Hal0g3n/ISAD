@@ -57,6 +57,10 @@ export default {
       type: Number,
       required: true,
     },
+    highestStep: {
+        type: Number,
+        required: true
+    },
     isReactive: {
       type: Boolean,
       required: false,
@@ -107,9 +111,8 @@ export default {
       currentStep: this.activeStep ,
       styleData: {
         progress__wrapper: {
-          flexWrap: "wrap",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
           margin: "1rem 0",
         },
@@ -120,9 +123,8 @@ export default {
         progress__bridge: {
           backgroundColor: "grey",
           borderRadius: "99px",
-          height: "5vmin",
+          height: "3vmin",
           flexGrow: "1",
-          width: "15vw",
           margin: "1vmin"
         },
         progress__bubble: {
@@ -175,7 +177,7 @@ export default {
         },
         progress__bridge: {
           active: {
-            backgroundColor: "#e74c3c",
+            backgroundColor: "#27ae60", //No special colour for active ("#e74c3c")
           },
           inactive: {
             backgroundColor: "#34495e",
@@ -190,45 +192,34 @@ export default {
 
   methods: {
     callPageChange: function (step) {
-      if (!this.isReactive) return;
-      if (!this.checkIfStepIsReactive(step)) return;
-      this.currentStep = step;
-      this.$emit("onStepChanged", step);
-      if (step == this.steps.length - 1) this.$emit("onEnterFinalStep", step);
+        if (!this.isReactive) return;
+        if (!this.checkIfStepIsReactive(step)) return;
+        this.currentStep = step;
+        this.$emit("onStepChanged", step);
     },
     isActive: function (index) {
       return index === this.currentStep;
     },
-    checkIfStepIsReactive: function (index) {
-      switch (this.reactivityType) {
-        case "all":
-          return true;
-        case "backward":
-          return index < this.currentStep;
-        case "forward":
-          return index > this.currentStep;
-        case "single-step":
-          return index == this.currentStep - 1 || index == this.currentStep + 1;
-        default:
-          return false;
-      }
-    },
+    checkIfStepIsReactive: function (index) { return (index <= this.highestStep); },
     getColors: function (className, index) {
       let styles = {};
-      if (index < this.currentStep) {
-        styles["color"] = this.colorData[className]["completed"]["color"];
-        styles["backgroundColor"] = this.inactiveColor
-          ? this.inactiveColor
-          : this.colorData[className]["completed"]["backgroundColor"];
-        styles["borderColor"] = this.colorData[className]["completed"][
-          "borderColor"
-        ];
-      } else if (index == this.currentStep) {
+      
+      if (className == "progress__bridge") ++index;
+
+      if (index == this.currentStep) {
         styles["color"] = this.colorData[className]["active"]["color"];
         styles["backgroundColor"] = this.colorData[className]["active"][
           "backgroundColor"
         ];
         styles["borderColor"] = this.colorData[className]["active"][
+          "borderColor"
+        ];
+      } else if (index <= this.highestStep) {
+        styles["color"] = this.colorData[className]["completed"]["color"];
+        styles["backgroundColor"] = this.inactiveColor
+          ? this.inactiveColor
+          : this.colorData[className]["completed"]["backgroundColor"];
+        styles["borderColor"] = this.colorData[className]["completed"][
           "borderColor"
         ];
       } else {
@@ -280,26 +271,25 @@ export default {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .progress__wrapper {
+.progress__wrapper {
     justify-content: space-around;
-  }
-  .progress__label {
+    margin: "5vmin"
+}
+.progress__label {
     display: none;
-  }
-  .progress__bubble {
+}
+.progress__bubble {
     margin: 0;
-  }
-  .progress__block:not(:last-of-type) {
+}
+.progress__block:not(:last-of-type) {
     flex-grow: 1;
     margin-right: 0;
-  }
-  .display-on-small {
+}
+.display-on-small {
     display: inline-block;
-  }
-  .progress__block {
+}
+.progress__block {
     margin: 0;
-  }
 }
 
 </style>

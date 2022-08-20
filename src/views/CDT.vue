@@ -1,6 +1,6 @@
 <template>
-    <div class = "Dashboard">
-        <h1 class="subheading grey--text">Homepage</h1>
+    <div class = "CDT">
+        <h1 class="subheading grey--text">CDT</h1>
 
 
         <v-container class=my-5>
@@ -10,7 +10,7 @@
             <v-row wrap>
                 <!-- First Item in first row -->
                 <v-col cols="12" md="6">
-                    <v-btn outline block class=primary>1</v-btn>
+                    <v-btn outline block class=primary @click="click">{{ count }}</v-btn>
                 </v-col>
 
                 <!-- Second Items in first row (May overflow) -->
@@ -47,10 +47,15 @@ import Vue from "vue";
 
 export default Vue.extend({
     name: "HomePage",
+    data: () => ({count: 0}),
 
-    components: {
-        //
-    },
+    methods: {
+        click: function() {
+            ++this.count;
+
+            if (this.count == 5) this.$emit("complete", "CVFT")
+        }
+    }
 });
 
 </script>
