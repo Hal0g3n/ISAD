@@ -4,14 +4,19 @@ import CDT from "@/views/CDT.vue";
 import MMSE from "@/views/MMSE.vue";
 import CVFT from "@/views/CVFT.vue";
 import Results from "@/views/Results.vue";
+import Intro from "@/views/Intro.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
+        path: "/",
+        name: "Homepage",
+        component: Intro
+    },
+    {
         path: "/CDT",
         name: "CDT",
-        alias: "/",
         component: CDT
     },
     {

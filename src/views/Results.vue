@@ -8,3 +8,7 @@
 
   </div>
 </template>
+
+
+<!-- https://vuejs.org/guide/extras/animation.html -->
+<!-- Animations? -->

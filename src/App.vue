@@ -1,19 +1,21 @@
 <template>
     <v-app class="grey lighten-4">
-        <ProgressBar
-            :v-show="false"
-            :steps="steps"
-            :active-step="step"
-            :highestStep="highestStep"
-            reactivityType="backward"
-            :is-reactive="true"
-            :showBridge="true"
-            :showLabel="false"
-            class = 'mx-4'
-            @onStepChanged="onStepChanged"/>
+        <transition name="fade" mode="out-in"> <!-- Animate in when doing test -->
+            <ProgressBar
+                :steps="steps"
+                :active-step="step"
+                :highestStep="highestStep"
+                reactivityType="backward"
+                :is-reactive="true"
+                :showBridge="true"
+                :showLabel="false"
+                class = 'mx-4'
+                v-if="!isHome"
+                @onStepChanged="onStepChanged"/>
+        </transition>
 
         <!-- Transitions for my views -->
-        <transition :name="'slider-' + anim_dir" mode='out-in'>
+        <transition :name="anim" mode='out-in'>
             <keep-alive> <!-- Forces the state of routes to save -->
                 <router-view class = 'mx-4 mb-4' @complete="unlockStep"/>
             </keep-alive>
@@ -28,9 +30,6 @@
 import Vue from "vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 
-// Setting Website Name
-document.title = "ISAD";
-
 // Route to Steps
 const steps: string[] = [
     "CDT",  
@@ -43,15 +42,16 @@ export default Vue.extend({
     name: "App",
     components: {ProgressBar},
     data: () => ({
-        step: 0,
-        highestStep: 0,
+        step: -1,
+        highestStep: -1,
         steps,
-        anim_dir: "right"
+        anim: "fade-out",
+        isHome: true
     }),
 
     created() {
         // Forces users to enters in correct route
-        if (this.$route.name != "CDT") this.$router.push("/");
+        if (this.$route.name != "Homepage") this.$router.push("/");
     },
 
     watch: { // Observer for route changes
@@ -60,14 +60,16 @@ export default Vue.extend({
 
             // What is the next index position
             var next: number = steps.indexOf(to.name);
-            console.log(to.name);
 
             // Handles Animation Slide Direction
-            if (next < this.step) this.anim_dir = "left";
-            else this.anim_dir = "right";
+            if (next < this.step) this.anim = "slider-left";
+            else this.anim = "slider-right";
 
+            // Time delay to make animation nicer
+            setTimeout(() => this.isHome = to.name == "Homepage", to.name == "Homepage" ? 0 : 350);
+
+            // Set step to next step
             this.step = next;
-            console.log(this.step);
         }
     },
 
@@ -81,10 +83,11 @@ export default Vue.extend({
         },
 
         unlockStep(step: string) {
-            if (steps.indexOf(step) > this.highestStep) {
+            // Sets highest step reachable
+            if (steps.indexOf(step) > this.highestStep)
                 this.highestStep = steps.indexOf(step);
-                this.onStepChanged(this.highestStep);
-            }
+
+            this.onStepChanged(steps.indexOf(step));
         }
     }
 });
@@ -124,5 +127,17 @@ export default Vue.extend({
     opacity: 0;
     transform: translatex(100%);
     transition: all 0.35s ease-out;
+}
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
