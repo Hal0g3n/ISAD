@@ -32,8 +32,8 @@ import ProgressBar from "@/components/ProgressBar.vue";
 
 // Route to Steps
 const steps: string[] = [
-    "CDT",  
     "MMSE", 
+    "CDT",
     "CVFT",
     "Results",
 ];
@@ -56,7 +56,7 @@ export default Vue.extend({
 
     watch: { // Observer for route changes
 
-        $route (to, from) { // Changes Progress bar accordingly
+        $route (to) { // Changes Progress bar accordingly
 
             // What is the next index position
             var next: number = steps.indexOf(to.name);
@@ -83,12 +83,13 @@ export default Vue.extend({
         },
 
         unlockStep(step: string) {
+            console.log(step);
             // Sets highest step reachable
-            if (steps.indexOf(step) > this.highestStep)
-                this.highestStep = steps.indexOf(step);
+            this.highestStep = Math.max(steps.indexOf(step), this.highestStep);
 
+            // Reroute to expected step
             this.onStepChanged(steps.indexOf(step));
-        }
+        },
     }
 });
 </script>

@@ -1,8 +1,10 @@
 <template>
     <div class = "Intro">
         <h1 class="subheading grey--text">Test</h1>
+        
+        <svg src="../src/assets/logo.svg"/>
 
-        <v-btn @click="onClick"/>
+        <v-btn @click="()=>this.$emit('complete', 'MMSE')">Take the Test</v-btn>
 
 
         <v-img :src="url"></v-img>
@@ -18,11 +20,6 @@ import Vue from "vue";
 export default Vue.extend({
     name: "HomePage",
     data: () => ({count: 0}),
-    methods: {
-        onClick() {
-            this.$emit("complete", "CDT");
-        }
-    }
 });
 
 </script>

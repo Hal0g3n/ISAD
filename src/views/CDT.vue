@@ -2,29 +2,58 @@
     <div class = "CDT">
         <h1 class="subheading grey--text">CDT</h1>
 
-        <v-file-input 
-         @change="Preview_image"
-         v-model="image"/>
+        <center>
 
+            <ImageChooser 
+                name="image-chooser" 
+                displayName="testing" 
+                @change="uploadFile" 
+                :error="error" 
+                :progress="progress" 
+                style="{height:50vmin;width:50vmin;}"
+                :baseSrc=image
+                />
 
-        <v-img :src="url"></v-img>
+        </center>
     </div>
 </template>
 
 
 
 <script>
-
 import Vue from "vue";
+import ImageChooser from "@/components/ImageChooser.vue";
+
 
 export default Vue.extend({
     name: "HomePage",
-    data: () => ({count: 0}),
+    components: {ImageChooser},
+    data: () => ({
+        progress: null,
+        error: null,
+        image: null
+    }),
     methods: {
-        Preview_image(e) {
-            if (e) {
-                $("#image_id").attr("src", URL.createObjectURL(e)); // jQuery selector
+        uploadFile(file) {
+            // Checks if file is actually an image
+            if (file.file.type.substring(0, 5) != "image") {
+                console.log("KMS");
+                this.error = "File is not an image";
+                return;
             }
+
+            this.error = null;
+            console.log(file.file.stream());
+
+            this.progress = 0;
+            var anim = setInterval(() => {
+                if (this.progress >= 100) {
+                    this.progress == null;
+                    clearInterval(anim);
+                    this.$emit("complete", "MMSE");
+                }
+                else this.progress += 1;
+            }, 10);
         }
     }
 });
