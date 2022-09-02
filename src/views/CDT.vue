@@ -6,7 +6,7 @@
 
             <ImageChooser 
                 name="image-chooser" 
-                displayName="testing" 
+                displayName="Upload Clock Image" 
                 @change="uploadFile" 
                 :error="error" 
                 :progress="progress" 

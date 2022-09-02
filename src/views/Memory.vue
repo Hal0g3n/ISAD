@@ -4,16 +4,9 @@
 
 
         <v-container>
-            <v-row>
-                1
-            </v-row>
-            <v-row>
-                2
-            </v-row>
-            <v-row>
-                3
-            </v-row>
-            <v-btn @click="click"/>
+            <v-row>Remember these 3 words</v-row>
+            <v-row v-for="word in words" :key="word">{{ word }}</v-row>
+            <v-row><v-btn @click="click"/></v-row>
         </v-container>
 
     </div>
@@ -21,9 +14,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { API } from "@/model/Data";
+
+const api = API.getInstance();
 
 export default Vue.extend({
-    data: () => ({}),
+    data: () => ({"words": api.words}),
 
     methods: {
         click() {

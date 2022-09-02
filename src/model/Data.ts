@@ -1,4 +1,4 @@
-class API {
+export class API {
     private static inst: API;
 
     public static getInstance(): API {
@@ -9,4 +9,5 @@ class API {
     public cdt = 0;
     public cvft = 0;
     public words = ["apple", "penny", "table"];
+    public results = 0;
 }
