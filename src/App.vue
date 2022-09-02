@@ -2,6 +2,7 @@
     <v-app class="grey lighten-4">
         <transition name="fade" mode="out-in"> <!-- Animate in when doing test -->
             <ProgressBar
+                style="align: center;"
                 :steps="steps"
                 :active-step="step"
                 :highestStep="highestStep"
@@ -32,10 +33,11 @@ import ProgressBar from "@/components/ProgressBar.vue";
 
 // Route to Steps
 const steps: string[] = [
-    "MMSE", 
+    "Memory", 
     "CDT",
+    "Recall", 
     "CVFT",
-    "Results",
+    "Results"
 ];
 
 export default Vue.extend({
@@ -45,7 +47,7 @@ export default Vue.extend({
         step: -1,
         highestStep: -1,
         steps,
-        anim: "fade-out",
+        anim: "fade",
         isHome: true
     }),
 
@@ -83,7 +85,6 @@ export default Vue.extend({
         },
 
         unlockStep(step: string) {
-            console.log(step);
             // Sets highest step reachable
             this.highestStep = Math.max(steps.indexOf(step), this.highestStep);
 

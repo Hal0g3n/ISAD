@@ -8,5 +8,5 @@ class API {
 
     public cdt = 0;
     public cvft = 0;
-    public mcog = 0;
+    public words = ["apple", "penny", "table"];
 }

@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import CDT from "@/views/CDT.vue";
-import MMSE from "@/views/MMSE.vue";
+import Memory from "@/views/Memory.vue";
+import Recall from "@/views/Recall.vue";
 import CVFT from "@/views/CVFT.vue";
 import Results from "@/views/Results.vue";
 import Intro from "@/views/Intro.vue";
@@ -20,9 +21,14 @@ const routes: Array<RouteConfig> = [
         component: CDT
     },
     {
-        path: "/MMSE",
-        name: "MMSE",
-        component: MMSE
+        path: "/Memory",
+        name: "Memory",
+        component: Memory
+    },
+    {
+        path: "/Recall",
+        name: "Recall",
+        component: Recall
     },
     {
         path: "/CVFT",

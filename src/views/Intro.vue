@@ -4,7 +4,7 @@
         
         <svg src="../src/assets/logo.svg"/>
 
-        <v-btn @click="()=>this.$emit('complete', 'MMSE')">Take the Test</v-btn>
+        <v-btn @click="()=>this.$emit('complete', 'Memory')">Take the Test</v-btn>
 
 
         <v-img :src="url"></v-img>

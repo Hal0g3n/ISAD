@@ -10,7 +10,7 @@
                 @change="uploadFile" 
                 :error="error" 
                 :progress="progress" 
-                style="{height:50vmin;width:50vmin;}"
+                style="height:50vmin; width:50vmin;"
                 :baseSrc=image
                 />
 
@@ -50,7 +50,7 @@ export default Vue.extend({
                 if (this.progress >= 100) {
                     this.progress == null;
                     clearInterval(anim);
-                    this.$emit("complete", "MMSE");
+                    this.$emit("complete", "Recall");
                 }
                 else this.progress += 1;
             }, 10);
