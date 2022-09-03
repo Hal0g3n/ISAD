@@ -4,15 +4,18 @@
 
 
     <v-container class=my-5>
-        <v-row justify="space-between">
+        <v-row justify="space-around">
             <vue-ellipse-progress 
                 animation="default 2500 0"
+                align = 'center'
                 :progress="cdt"/>
             <vue-ellipse-progress 
                 animation="default 2500 3000"
+                align = 'center'
                 :progress="cvft"/>
             <vue-ellipse-progress 
                 animation="default 2500 5500"
+                align = 'center'
                 :progress="mcog"/>
         </v-row>
     </v-container>

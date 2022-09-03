@@ -6,7 +6,7 @@
                 :steps="steps"
                 :active-step="step"
                 :highestStep="highestStep"
-                reactivityType="backward"
+                reactivityType="none"
                 :is-reactive="true"
                 :showBridge="true"
                 :showLabel="false"
