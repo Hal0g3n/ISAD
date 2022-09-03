@@ -33,9 +33,16 @@ export default Vue.extend({
 
     methods: {
         click() {
-            for (var data of this.recalled) 
-                console.log(data.value);
-            
+            var indices: Set<number> = new Set<number>();
+            for (var data of this.recalled)
+                indices.add(api.words.indexOf(data.value.toLowerCase()));
+
+            // One point per correct word, -1 is incorrect so must remove
+            api.mcog = indices.size - (indices.has(-1) ? 1 : 0);
+
+            // Convert to percentage
+            api.mcog = api.mcog * 100 / api.words.length;
+
             this.$emit("complete", "CVFT");
         }
     }

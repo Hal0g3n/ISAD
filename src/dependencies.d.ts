@@ -12,3 +12,8 @@ declare module "vue-step-progress-indicator" {
     import VueStepProgressIndicator from "vue-step-progress-indicator";
     export default VueStepProgressIndicator;
 }
+
+declare module "vue-ellipse-progress" {
+    import { VueEllipseProgress } from "vue-ellipse-progress";
+    export default VueEllipseProgress;
+}

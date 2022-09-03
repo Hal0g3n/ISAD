@@ -6,8 +6,8 @@ export class API {
         return API.inst;
     }
 
-    public cdt = 0;
-    public cvft = 0;
+    public cdt = 20;
+    public cvft = 80;
+    public mcog = 0;
     public words = ["apple", "penny", "table"];
-    public results = 0;
 }
