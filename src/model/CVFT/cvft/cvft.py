@@ -1,11 +1,14 @@
-from errno import EDQUOT
 from pydub import AudioSegment
-import wave, json
-from vosk import Model, KaldiRecognizer, SetLogLevel
+import wave, json, sys
+from vosk import Model, KaldiRecognizer
 
-gender = 0
-age = 75
-education = 6
+try:
+    gender = float(sys.argv[1])
+    age = float(sys.argv[2])
+    education = float(sys.argv[3])
+    mp3 = sys.argv[4] # filepath
+except:
+    print("input error")
 threshold = 0.6034
 
 class Word:
@@ -19,7 +22,6 @@ def calc_score(gender, age, education, firsthalf, switching, clustering, perseve
     return 1.16 + 0.474 * gender + 0.003 * age + 0.226 * education - 0.089 * firsthalf - 0.516 * switching - 0.303 * clustering + 0.534 * perseveration
 
 model_path = "vosk-model-small-en-us-0.15"
-mp3 = "audio.mp3"
 wav = "audio.wav"
 
 mp3_audio = AudioSegment.from_mp3(mp3)
