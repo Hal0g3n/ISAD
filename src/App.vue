@@ -7,7 +7,7 @@
                 :active-step="step"
                 :highestStep="highestStep"
                 reactivityType="none"
-                :is-reactive="true"
+                :is-reactive="false"
                 :showBridge="true"
                 :showLabel="false"
                 class = 'mx-4'
