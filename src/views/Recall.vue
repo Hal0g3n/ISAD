@@ -1,14 +1,14 @@
 <template>
   <div class="Recall">
-    <h1 class="subheading grey--text">Do you remember?</h1>
-    
-    <v-container class=my-5>
-        <v-row>
-            <div>What are the words to remember?</div>
-        </v-row>
+    <v-container class=my-5 fill-height>
+        <v-row><h1>Recall</h1></v-row>
 
-        <v-row v-for="(word, index) in recalled" :key="word"><v-text-field v-model="word.value" :key="index"/></v-row>
-        <v-btn @click="click"/>
+        <v-row><div>Type out the 3 words you memorised just now</div></v-row>
+
+        <v-row v-for="(word, index) in recalled" :key="word">
+            <v-col cols=10><v-text-field v-model="word.value" :key="index"/></v-col>
+        </v-row>
+        <v-btn @click="click">Submit</v-btn>
     </v-container>
   </div>
 </template>

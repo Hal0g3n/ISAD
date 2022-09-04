@@ -1,21 +1,35 @@
 <template>
-    <div class = "CDT">
-        <h1 class="subheading grey--text">CDT</h1>
+    <div class = "CDT"> <transition name=fade mode=out-in>
+        <v-container v-if="!ready" key="Prep">
+            <h1>Test Requirements</h1>
+            For this test, you will require:
+            <li>Blank White Paper</li>
+            <li>Camera</li>
+            <v-btn @click="()=>ready=true">Ready!</v-btn>
+        </v-container>
 
-        <center>
+        <v-container v-else key="CDT">
+            <h1 class="subheading grey--text">Clock Drawing Test</h1>
 
-            <ImageChooser 
-                name="image-chooser" 
-                displayName="Upload Clock Image" 
-                @change="uploadFile" 
-                :error="error" 
-                :progress="progress" 
-                style="height:50vmin; width:50vmin;"
-                :baseSrc=image
-                />
+            Without referencing anything, draw a analog clock showing 10 past 11. <br/>
+            Then upload a picture of the drawn clock.
 
-        </center>
-    </div>
+            <center>
+
+                <ImageChooser 
+                    name="image-chooser" 
+                    displayName="Upload Clock Image" 
+                    @change="uploadFile" 
+                    :error="error" 
+                    :progress="progress" 
+                    style="height:50vmin; width:50vmin;"
+                    :baseSrc=image
+                    />
+
+            </center>
+        </v-container>
+
+    </transition> </div>
 </template>
 
 
@@ -26,9 +40,9 @@ import ImageChooser from "@/components/ImageChooser.vue";
 
 
 export default Vue.extend({
-    name: "HomePage",
     components: {ImageChooser},
     data: () => ({
+        ready: false,
         progress: null,
         error: null,
         image: null
@@ -59,3 +73,17 @@ export default Vue.extend({
 });
 
 </script>
+
+
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.25s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

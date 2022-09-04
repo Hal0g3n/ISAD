@@ -6,8 +6,12 @@ export class API {
         return API.inst;
     }
 
-    public cdt = 20;
+    public gender = "";
+    public age = 0;
     public cvft = 80;
+
+    public cdt = 20;
+
     public mcog = 0;
     public words = ["apple", "penny", "table"];
 }

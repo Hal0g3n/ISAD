@@ -17,3 +17,8 @@ declare module "vue-ellipse-progress" {
     import { VueEllipseProgress } from "vue-ellipse-progress";
     export default VueEllipseProgress;
 }
+
+declare module "vue-audio-recorder" {
+    import { VueAudioRecorder } from "vue-audio-recorder";
+    export default VueAudioRecorder;
+}

@@ -1,36 +1,115 @@
 <template>
-    <div class="Memory">
-        <h1 class="subheading grey--text">ISAD</h1>
+    <div class="Memory"> <transition name=fade mode=out-in>
 
+        <!-- Getting Personal Information -->
+        <v-container v-if="details" fill-height key="details">
+            <h1>Details</h1>
 
-        <v-container v-if="!seen">
-            <v-row>Remember these 3 words</v-row>
-            <v-row v-for="word in words" :key="word">{{ word }}</v-row>
-            <v-row><v-btn @click="click"/></v-row>
+            <v-row>
+                <v-col cols=12>
+                    <h2 class="subheading grey--text">Sex</h2>
+                    <v-select
+                        label="Select Your Sex"
+                        item-text="sex"
+                        item-value="val"
+                        :items="[{sex: 'Male', val: 0}, {sex: 'Female', val: 1}]"
+                        v-model="gender.val"
+                        outlined/>
+                </v-col>
+            </v-row>
+
+            <v-row>
+                <v-col cols=12>
+                    <h2 class="subheading grey--text">Birthday</h2>
+                    
+                    <v-menu
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                        >
+                        
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                                v-model="date"
+                                label="Birthday Date"
+                                prepend-icon="mdi-calendar"
+                                readonly
+                                v-bind="attrs"
+                                v-on="on"/>
+                        </template>
+
+                        <v-date-picker
+                            :active-picker.sync="activePicker"
+                            v-model="date"
+                            :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
+                            min="1950-01-01"
+                        ></v-date-picker>
+                    </v-menu>
+
+                </v-col>
+            </v-row>
+
+            <v-row><v-btn @click="()=>this.details = false">Submit</v-btn></v-row>
         </v-container>
 
-        <v-container v-if="seen">
-            No cheating!!
+        <!-- Memory Test -->
+        <v-container v-else key="memory">
+            <h1>Memorise these 3 words</h1>
+            
+            <li v-for="word in api.words" :key="word">
+                {{ word }}
+            </li>
+            <v-btn @click="click">Memorised</v-btn>
+
         </v-container>
 
-    </div>
+    </transition> </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { API } from "@/model/Data";
 
-const api = API.getInstance();
-
 export default Vue.extend({
-    data: () => ({"words": api.words, seen: false}),
+    data: () => ({
+        api: API.getInstance(),
+        gender: {val: 0},
+        details: true,
+        menu: false,
+        date: null,
+        activePicker: "YEAR",
+    }),
+
+    watch: {
+        menu(val) {
+            val && setTimeout(() => (this.activePicker = "YEAR"));
+        }
+    },
 
     methods: {
         click() {
+            this.details = true;
             this.$emit("complete", "CDT");
-            setTimeout(() => this.seen = true, 500);
+            console.log(this.date);
+            console.log(this.gender.val);
         }
     }
 });
 
 </script>
+
+
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.25s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

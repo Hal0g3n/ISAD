@@ -6,8 +6,8 @@
                 :steps="steps"
                 :active-step="step"
                 :highestStep="highestStep"
-                reactivityType="none"
-                :is-reactive="false"
+                reactivityType="backward"
+                :is-reactive="true"
                 :showBridge="true"
                 :showLabel="false"
                 class = 'mx-4'
