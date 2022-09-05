@@ -1,14 +1,14 @@
 <template>
   <div class="Results">
-    <h1>Results</h1>
+    <center class="text-h3 ma-5">You passed {{this.passed}} of 3 tests</center>
 
     <v-container>
         <v-row justify="center">
             <vue-ellipse-progress 
                 class='mx-auto my-5'
                 animation="default 2000 0"
-                color="#8fce00"
-                emptyColor="#FFF07F"
+                :color="(cdt >= 50) ? '#8fce00' : '#ff3c3c'"
+                emptyColor="#faf7ff"
                 :size="250"
                 :thickness="15"
                 emptyThickness="10%"
@@ -23,8 +23,8 @@
             <vue-ellipse-progress 
                 class='mx-auto my-5'
                 animation="default 2000 2500"
-                color="#8fce00"
-                emptyColor="#FFF07F"
+                :color="(mcog >= 50) ? '#8fce00' : '#ff3c3c'"
+                emptyColor="#faf7ff"
                 :size="250"
                 :thickness="15"
                 emptyThickness="10%"
@@ -39,8 +39,8 @@
             <vue-ellipse-progress 
                 class='mx-auto my-5'
                 animation="default 2000 5000"
-                color="#8fce00"
-                emptyColor="#FFF07F"
+                :color="(cvft >= 50) ? '#8fce00' : '#ff3c3c'"
+                emptyColor="#faf7ff"
                 :size="250"
                 :thickness="15"
                 emptyThickness="10%"
@@ -68,9 +68,16 @@ export default Vue.extend({
     data: () => ({
         cdt: Math.round(api.cdt),
         cvft: Math.round(api.cvft),
-        mcog: Math.round(api.mcog)
+        mcog: Math.round(api.mcog),
+        passed: 0
     }),
 
     components: {VueEllipseProgress},
+
+    mounted() {
+        this.passed += this.cdt >= 50 ? 1 : 0;
+        this.passed += this.cvft >= 50 ? 1 : 0;
+        this.passed += this.mcog >= 50 ? 1 : 0;
+    }
 });
 </script>

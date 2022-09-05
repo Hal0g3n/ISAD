@@ -5,7 +5,7 @@
             For this test, you will require:
             <li>Blank White Paper</li>
             <li>Camera</li>
-            <v-btn @click="()=>ready=true">Ready!</v-btn>
+            <v-btn class=primary @click="()=>ready=true">Ready!</v-btn>
         </v-container>
 
         <v-container v-else key="CDT">
@@ -27,6 +27,7 @@
                     />
 
             </center>
+
         </v-container>
 
     </transition> </div>

@@ -5,7 +5,7 @@
             <h1>Test Requirements</h1>
             For this test, you will require:
             <li>Audio Capture Device (e.g. Microphone)</li>
-            <v-btn @click="()=>ready=true">Ready!</v-btn>
+            <v-btn class=primary @click="()=>ready=true">Ready!</v-btn>
         </v-container>
 
         

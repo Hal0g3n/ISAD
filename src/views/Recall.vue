@@ -8,7 +8,7 @@
         <v-row v-for="(word, index) in recalled" :key="word">
             <v-col cols=10><v-text-field v-model="word.value" :key="index"/></v-col>
         </v-row>
-        <v-btn @click="click">Submit</v-btn>
+        <v-btn class=primary @click="click">Submit</v-btn>
     </v-container>
   </div>
 </template>
