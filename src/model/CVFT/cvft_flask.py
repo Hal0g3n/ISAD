@@ -27,23 +27,21 @@ def calc_score(gender, age, education, firsthalf, switching, clustering, perseve
 @cross_origin(origin='*')
 def run():
     try: 
-        if request.method == 'GET': raise Exception('This is GET')
+        if request.method == 'GET': raise Exception('POST not GET you dimwit')
 
         gender = float(request.form.get('gender'))
         age = float(request.form.get('age'))
         education = float(request.form.get('education'))
-        mp3 = request.form.get('mp3') # filepath
+        data = files.get('file')
+
+        with open("audio.wav", "bx") as f: f.write(data)
 
         threshold = 0.6034
 
         model_path = "vosk-model-small-en-us-0.15"
-        wav = "audio.wav"
-
-        mp3_audio = AudioSegment.from_mp3(mp3)
-        mp3_audio.export(wav, format="wav")
 
         model = Model(model_path)
-        wf = wave.open(wav, "rb")
+        wf = wave.open("audio.wav", "rb")
         rec = KaldiRecognizer(model, wf.getframerate())
         rec.SetWords(True)
 

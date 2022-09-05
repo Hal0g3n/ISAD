@@ -5,7 +5,7 @@
             <h1>Test Requirements</h1>
             For this test, you will require:
             <li>Audio Capture Device (e.g. Microphone)</li>
-            <v-btn class=primary @click="()=>ready=true">Ready!</v-btn>
+            <v-btn class="primary" style="margin-top:3vmin" @click="()=>ready=true">Ready!</v-btn>
         </v-container>
 
         
@@ -49,14 +49,14 @@ export default Vue.extend({
             form.append("gender", api.gender);
             form.append("age", api.age);
             form.append("education", api.edu);
-            form.append("mp3", recording);
+            form.append("audio", recording.blob, "audio");
 
             axios.post("http://127.0.0.1:5000/predict", form).then(
                 (result) => { console.log(result); }, 
                 (error) => { console.log(error); }
             );
 
-            this.$emit("complete","Results");
+            this.$emit("complete", "Results");
         }
     },
 });

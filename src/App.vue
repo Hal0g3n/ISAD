@@ -5,8 +5,8 @@
                 style="align: center;"
                 :steps="steps"
                 :active-step="step"
-                :highestStep="highestStep"
-                :isReactive="false"
+                :highestStep="5"
+                :isReactive="true"
                 :showBridge="true"
                 :showLabel="false"
                 class = 'mx-4'

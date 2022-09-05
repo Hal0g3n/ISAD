@@ -13,7 +13,7 @@
 
                         item-text="sex"
                         item-value="val"
-                        :items="[{sex: 'Male', val: 0}, {sex: 'Female', val: 1}]"
+                        :items="[{sex: 'Male', val: 1}, {sex: 'Female', val: 2}]"
                         v-model="gender.val"
 
                         :rules="[(v) => !!v || 'Please Select a Gender']"
@@ -64,7 +64,7 @@
 
             <v-row>
                 <v-col cols=12>
-                    <h2 class="subheading grey--text">Years of Education</h2>
+                    <h2 class="subheading grey--text mb-5">Years of Education</h2>
                     <NumberInputSpinner
                         v-model="edu"
                         :min="0"
@@ -78,7 +78,7 @@
                 </v-col>
             </v-row>
 
-            <v-row><v-btn class=primary id="btn1" @click="info">Submit</v-btn></v-row>;
+            <v-row><v-btn class="primary" style="margin-top:3vmin" id="btn1" @click="info">Submit</v-btn></v-row>;
         </v-container>
 
         <!-- Memory Test -->
@@ -88,7 +88,7 @@
             <li v-for="word in api.words" :key="word">
                 {{ word }}
             </li>
-            <v-btn class=primary @click="memorise">Memorised</v-btn>
+            <v-btn class="primary" style="margin-top:3vmin" @click="memorise">Done!</v-btn>
 
         </v-container>
 
@@ -103,7 +103,7 @@ import NumberInputSpinner from "vue-number-input-spinner";
 export default Vue.extend({
     data: () => ({
         api: API.getInstance(),
-        gender: {val: null as unknown as number},
+        gender: {val: 0},
         edu: 0,
         details: 0,
         menu: false,
@@ -121,7 +121,7 @@ export default Vue.extend({
 
     methods: {
         info() {
-            if (this.gender.val == null) return;
+            if (this.gender.val == 0) return;
 
             // Input validation
             if (this.date == null) return;
@@ -135,7 +135,7 @@ export default Vue.extend({
 
             // Updates the API data
             this.api.edu = this.edu;
-            this.api.gender = this.gender.val;
+            this.api.gender = this.gender.val - 1; // Shifted up by 1 for easier input validation
 
             // Retarded code to calculate age from bday
             var now = new Date();

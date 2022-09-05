@@ -18,7 +18,7 @@ declare module "vue-ellipse-progress" {
     export default VueEllipseProgress;
 }
 
-declare module "vue-audio-recorder" {
-    import { VueAudioRecorder } from "vue-audio-recorder";
-    export default VueAudioRecorder;
+declare module "vue-number-input-spinner" {
+    import NumberInputSpinner from "vue-number-input-spinner";
+    export default NumberInputSpinner;
 }
