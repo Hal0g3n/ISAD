@@ -13,13 +13,12 @@
         <v-container v-else key="CDT">
             <h1 class="subheading grey--text">Verbal Fluency Test</h1>
 
-            Record 1 min of you saying unique animal names.
+            Say as many unique animal names in 60 seconds. <br/>
+            You only have <b>1</b> attempt. <br/>
+            Press the button to begin!
 
             <center>
-                <audio-recorder
-                    :attempts="1"
-                    :time="1"
-                    :after-recording="()=>this.$emit('complete','Results')"/>
+                <AudioRecorder @result="upload"/>
             </center>
 
         </v-container>
@@ -31,7 +30,11 @@
 
 <script>
 import Vue from "vue";
-import { AudioRecorder } from "vue-audio-recorder";
+import AudioRecorder from "@/components/AudioRecorder.vue";
+import axios from "axios";
+import { API } from "@/model/Data";
+
+const api = API.getInstance();
 
 export default Vue.extend({
     components: { AudioRecorder },
@@ -39,6 +42,23 @@ export default Vue.extend({
     data: () => ({
         ready: false,
     }),
+
+    methods: { 
+        upload(recording) {
+            var form = new FormData();
+            form.append("gender", api.gender);
+            form.append("age", api.age);
+            form.append("education", api.edu);
+            form.append("mp3", recording);
+
+            axios.post("http://127.0.0.1:5000/predict", form).then(
+                (result) => { console.log(result); }, 
+                (error) => { console.log(error); }
+            );
+
+            this.$emit("complete","Results");
+        }
+    },
 });
 
 </script>

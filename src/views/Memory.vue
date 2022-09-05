@@ -2,7 +2,7 @@
     <div class="Memory"> <transition name=fade mode=out-in>
 
         <!-- Getting Personal Information -->
-        <v-container v-if="details" fill-height key="details">
+        <v-container v-if="details==0" fill-height key="details">
             <h1>Details</h1>
 
             <v-row>
@@ -51,7 +51,7 @@
                 </v-col>
             </v-row>
 
-            <v-row><v-btn @click="()=>this.details = false">Submit</v-btn></v-row>
+            <v-row><v-btn id="btn1" @click="details != 0 ? $emit('complete', 'CDT') : ++details">Submit</v-btn></v-row>;
         </v-container>
 
         <!-- Memory Test -->
@@ -75,8 +75,8 @@ import { API } from "@/model/Data";
 export default Vue.extend({
     data: () => ({
         api: API.getInstance(),
-        gender: {val: 0},
-        details: true,
+        gender: {val: -1},
+        details: 0,
         menu: false,
         date: null,
         activePicker: "YEAR",
@@ -90,7 +90,7 @@ export default Vue.extend({
 
     methods: {
         click() {
-            this.details = true;
+            this.details = 2;
             this.$emit("complete", "CDT");
             console.log(this.date);
             console.log(this.gender.val);

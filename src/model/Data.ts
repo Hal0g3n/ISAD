@@ -6,8 +6,9 @@ export class API {
         return API.inst;
     }
 
-    public gender = "";
+    public gender = 0;
     public age = 0;
+    public edu = 0;
     public cvft = 80;
 
     public cdt = 20;

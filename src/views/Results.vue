@@ -1,18 +1,18 @@
 <template>
   <div class="Results">
-    <h1 class="subheading grey--text">Results</h1>
+    <h1>Results</h1>
 
-    <v-container class=my-5>
-        <v-row justify="space-around">
+    <v-container>
+        <v-row justify="center">
             <vue-ellipse-progress 
+                class='mx-auto my-5'
                 animation="default 2000 0"
-                align = 'center'
                 color="#8fce00"
                 emptyColor="#FFF07F"
-                :size="300"
-                :thickness="30"
-                emptyThickness="15%"
-                fontsize="100%"
+                :size="250"
+                :thickness="15"
+                emptyThickness="10%"
+                fontSize="5rem"
                 :progress="cdt">
                 <template>
                     <span slot='legend-value'>%</span>
@@ -21,14 +21,14 @@
             </vue-ellipse-progress>
 
             <vue-ellipse-progress 
+                class='mx-auto my-5'
                 animation="default 2000 2500"
-                align = 'center'
                 color="#8fce00"
                 emptyColor="#FFF07F"
-                :size="300"
-                :thickness="30"
-                emptyThickness="15%"
-                fontsize="100%"
+                :size="250"
+                :thickness="15"
+                emptyThickness="10%"
+                fontSize="5rem"
                 :progress="mcog">
                 <template>
                     <span slot='legend-value'>%</span>
@@ -37,14 +37,14 @@
             </vue-ellipse-progress>
 
             <vue-ellipse-progress 
+                class='mx-auto my-5'
                 animation="default 2000 5000"
-                align = 'center'
                 color="#8fce00"
                 emptyColor="#FFF07F"
-                :size="300"
-                :thickness="30"
-                emptyThickness="15%"
-                fontsize="100%"
+                :size="250"
+                :thickness="15"
+                emptyThickness="10%"
+                fontSize="5rem"
                 :progress="cvft">
                 <template>
                     <span slot='legend-value'>%</span>
