@@ -3,7 +3,7 @@
     <v-container class=my-5 fill-height>
         <v-row><h1 class="subheading grey--text">Recall Test</h1></v-row>
 
-        <v-row><div>Type out the 3 words you memorised just now</div></v-row>
+        <v-row><div>Type out the words you memorised just now</div></v-row>
 
         <v-row v-for="(word, index) in recalled" :key="word">
             <v-col cols=10><v-text-field v-model="word.value" :key="index"/></v-col>

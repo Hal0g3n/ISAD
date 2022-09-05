@@ -7,7 +7,7 @@
 
             <v-row>
                 <v-col cols=12>
-                    <h2 class="subheading grey--text">Gender</h2>
+                    <h2 class="subheading grey--text mb-2">Gender</h2>
                     <v-select
                         label="Select Your Gender"
 
@@ -78,12 +78,12 @@
                 </v-col>
             </v-row>
 
-            <v-row><v-btn class="primary" style="margin-top:3vmin" id="btn1" @click="info">Submit</v-btn></v-row>;
+            <v-row><v-col><v-btn class="primary" style="margin-top:3vmin" id="btn1" @click="info">Submit</v-btn></v-col></v-row>
         </v-container>
 
         <!-- Memory Test -->
         <v-container v-else key="memory">
-            <h1>Memorise these 3 words</h1>
+            <h1>Memorise these words</h1>
             
             <li v-for="word in api.words" :key="word">
                 {{ word }}

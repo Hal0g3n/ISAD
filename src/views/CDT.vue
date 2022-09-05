@@ -4,15 +4,16 @@
             <h1>Test Requirements</h1>
             For this test, you will require:
             <li>Blank White Paper</li>
-            <li>Camera</li>
+            <li>Your device's camera</li>
             <v-btn class="primary" style="margin-top:3vmin" @click="()=>ready=true">Ready!</v-btn>
         </v-container>
 
         <v-container v-else key="CDT">
             <h1 class="subheading grey--text">Clock Drawing Test</h1>
 
-            Without referencing anything, draw a analog clock showing 10 past 11. <br/>
-            Then upload a picture of the drawn clock.
+            Without referencing anything, draw a analog clock showing 10 past 11. <br>
+            Then upload a picture of the drawn clock. <br>
+            Give yourself 3 minutes to draw the clock. <br>
 
             <center>
 
@@ -23,7 +24,7 @@
                     :error="error" 
                     :progress="progress" 
                     style="height:50vmin; width:50vmin;"
-                    :baseSrc=image
+                    :baseSrc="image"
                     />
 
             </center>

@@ -4,7 +4,7 @@
         <v-container v-if="!ready" key="Prep">
             <h1>Test Requirements</h1>
             For this test, you will require:
-            <li>Audio Capture Device (e.g. Microphone)</li>
+            <li>A Microphone (Most devices have 1)</li>
             <v-btn class="primary" style="margin-top:3vmin" @click="()=>ready=true">Ready!</v-btn>
         </v-container>
 
@@ -15,7 +15,7 @@
 
             Say as many unique animal names in 60 seconds. <br/>
             You only have <b>1</b> attempt. <br/>
-            Press the button to begin!
+            Press the button to begin! <br>
 
             <center>
                 <AudioRecorder @result="upload"/>
