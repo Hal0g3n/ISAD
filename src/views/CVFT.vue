@@ -51,12 +51,15 @@ export default Vue.extend({
             form.append("education", api.edu);
             form.append("audio", recording.blob, "audio");
 
-            axios.post("http://127.0.0.1:5000/predict", form).then(
-                (result) => { console.log(result); }, 
-                (error) => { console.log(error); }
+            axios.post("https://pearson.pythonanywhere.com/predict", form).then(
+                (result) => { 
+                    api.cvft = result.data.response * 100;
+                    console.log(result); 
+                    this.$emit("complete", "Results");
+                }, 
+                (error) => { console.log(error); },
             );
 
-            this.$emit("complete", "Results");
         }
     },
 });
