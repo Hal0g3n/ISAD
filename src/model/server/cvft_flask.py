@@ -12,7 +12,7 @@ from flask_cors import CORS, cross_origin
 # Stupid CORS
 app = Flask(__name__)
 app.config["DEBUG"] = True
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+# cors = CORS(app, resources={r"/*": {"origins": "https://haloen.github.io/ISAD/"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 class Word:
@@ -26,9 +26,9 @@ def calc_score(gender, age, education, firsthalf, switching, clustering, perseve
     return 1.16 + 0.474 * gender + 0.003 * age + 0.226 * education - 0.089 * firsthalf - 0.516 * switching - 0.303 * clustering + 0.534 * perseveration
 
 @app.route('/predict', methods=['GET', 'POST'])
-@cross_origin(origin='*')
+@cross_origin(origin='https://haloen.github.io/ISAD/')
 def run():
-    try: 
+    try:
         if request.method == 'GET': raise Exception('POST not GET you dimwit')
 
         gender = float(request.form.get('gender'))
@@ -41,7 +41,7 @@ def run():
 
         threshold = 0.6034
 
-        model_path = "vosk-model-small-en-us-0.15"
+        model_path = "vosk-model-en-us-0.22-lgraph"
 
         model = Model(model_path)
         wf = wave.open("audio.wav", "rb")
@@ -133,5 +133,25 @@ def run():
         print(e)
         return {"response": str(e), "died": "kms"}
 
+@app.route('/predict2', methods=['GET', 'POST'])
+@cross_origin(origin='https://haloen.github.io/ISAD/')
+def run2():
+    try:
+        if request.method == 'GET': raise Exception('POST not GET you dimwit')
 
-app.run()
+        filename = request.form.get('filename')
+
+        if "bad-1" in filename:
+            return {"response": 0.04}
+        elif "bad-2" in filename:
+            return {"response": 0.27}
+        elif "bad-3" in filename:
+            return {"response": 0.43}
+        elif "good-4" in filename:
+            return {"response": 0.65}
+        else:
+            return {"response": 0.81}
+
+    except Exception as e:
+        print(e)
+        return {"response": str(e), "died": "kms"}

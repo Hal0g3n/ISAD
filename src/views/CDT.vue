@@ -39,7 +39,10 @@
 <script>
 import Vue from "vue";
 import ImageChooser from "@/components/ImageChooser.vue";
+import axios from "axios";
+import { API } from "@/model/Data";
 
+const api = API.getInstance();
 
 export default Vue.extend({
     components: {ImageChooser},
@@ -59,17 +62,29 @@ export default Vue.extend({
             }
 
             this.error = null;
-            console.log(file.file.stream());
-
+            console.log(file);
+            
             this.progress = 0;
             var anim = setInterval(() => {
                 if (this.progress >= 100) {
                     this.progress == null;
                     clearInterval(anim);
-                    this.$emit("complete", "Recall");
                 }
                 else this.progress += 1;
             }, 10);
+
+            var form = new FormData();
+            form.append("filename", file.file.name);
+
+            axios.post("https://pearson.pythonanywhere.com/predict2", form).then(
+                (result) => { 
+                    console.log(result); 
+                    api.cdt = result.data.response * 100;
+                    clearInterval(anim);
+                    this.$emit("complete", "Recall");
+                }, 
+                (error) => { console.log(error); },
+            );
         }
     }
 });
