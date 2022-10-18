@@ -3,7 +3,7 @@
         <transition name="fade" mode="out-in"> <!-- Animate in when doing test -->
             <ProgressBar
                 style="align: center;"
-                :steps="steps"
+                :steps="api.steps"
                 :active-step="step"
                 :highestStep="highestStep"
                 :isReactive="false"
@@ -29,15 +29,7 @@
 <script lang="ts">
 import Vue from "vue";
 import ProgressBar from "@/components/ProgressBar.vue";
-
-// Route to Steps
-const steps: string[] = [
-    "Memory", 
-    "CDT",
-    "Recall", 
-    "CVFT",
-    "Results"
-];
+import {API} from "@/model/Data";
 
 export default Vue.extend({
     name: "App",
@@ -45,7 +37,7 @@ export default Vue.extend({
     data: () => ({
         step: -1,
         highestStep: -1,
-        steps,
+        api: API.getInstance(),
         anim: "fade",
         isHome: true
     }),
@@ -60,7 +52,7 @@ export default Vue.extend({
         $route (to) { // Changes Progress bar accordingly
 
             // What is the next index position
-            var next: number = steps.indexOf(to.name);
+            var next: number = this.api.steps.indexOf(to.name);
 
             // Handles Animation Slide Direction
             if (next < this.step) this.anim = "slider-left";
@@ -80,15 +72,15 @@ export default Vue.extend({
             // If actually clicked on something different
             // Change the route
             if (step != this.step)
-                this.$router.push("/" + steps[step]);
+                this.$router.push("/" + this.api.steps[step]);
         },
 
-        unlockStep(step: string) {
+        unlockStep() {
             // Sets highest step reachable
-            this.highestStep = Math.max(steps.indexOf(step), this.highestStep);
+            ++this.highestStep;
 
             // Reroute to expected step
-            this.onStepChanged(steps.indexOf(step));
+            this.onStepChanged(this.highestStep);
         },
     }
 });

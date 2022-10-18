@@ -81,7 +81,7 @@ export default Vue.extend({
                     console.log(result); 
                     api.cdt = result.data.response * 100;
                     clearInterval(anim);
-                    this.$emit("complete", "Recall");
+                    this.$emit("complete");
                 }, 
                 (error) => { console.log(error); },
             );

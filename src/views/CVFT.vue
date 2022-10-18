@@ -55,7 +55,7 @@ export default Vue.extend({
                 (result) => { 
                     api.cvft = result.data.response * 100;
                     console.log(result); 
-                    this.$emit("complete", "Results");
+                    this.$emit("complete");
                 }, 
                 (error) => { console.log(error); },
             );

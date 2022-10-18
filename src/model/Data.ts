@@ -15,4 +15,24 @@ export class API {
 
     public mcog = 0;
     public words = ["apple", "penny", "table"];
+
+    
+    public tests = [
+        {
+            name: "Verbal Test",
+            steps: ["CVFT", "Results"]
+        },
+        {
+            name: "Drawing Test",
+            steps: ["CDT", "Results"]
+        },
+        {
+            name: "Mini Cognitive Test",
+            steps: ["Memory", "CDT", "Recall", "Results"]
+        },
+        {
+            name: "All Tests",
+            steps: ["Memory", "CDT", "Recall", "CVFT", "Results"]
+        },
+    ];
 }
