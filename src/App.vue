@@ -1,5 +1,5 @@
 <template>
-    <v-app style="backgroundColor: #EDF4FF">
+    <v-app style="backgroundColor: #faf6ff">
         <transition name="fade" mode="out-in"> <!-- Animate in when doing test -->
             <ProgressBar
                 style="align: center;"
@@ -69,18 +69,17 @@ export default Vue.extend({
     // define methods under the `methods` object
     methods: {
         onStepChanged(step: number) {
-            // If actually clicked on something different
-            // Change the route
-            if (step != this.step)
-                this.$router.push("/" + this.api.steps[step]);
+            // Update the router
+            this.$router.push("/" + this.api.steps[step]);
         },
 
         unlockStep() {
-            // Sets highest step reachable
-            ++this.highestStep;
+            // Increments the current step
+            ++this.step;
+            this.highestStep = this.step > 0 ? Math.max(this.highestStep, this.step) : -1;
 
             // Reroute to expected step
-            this.onStepChanged(this.highestStep);
+            this.onStepChanged(this.step);
         },
     }
 });

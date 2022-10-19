@@ -15,12 +15,6 @@
                     {{ test.name }}
                 </v-btn>
             </div>
-            
-            <v-checkbox
-            v-model="api.steps"
-            label="Drawing Test"
-            value="CDT"
-            ></v-checkbox>
         </v-container>
     </div>
 </template>

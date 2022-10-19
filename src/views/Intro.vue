@@ -34,17 +34,6 @@ import {API} from "@/model/Data";
 export default Vue.extend({
     data: () => ({show: 0, api: API.getInstance()}),
     components: {Info, Selection},
-    methods: {
-        completeSteps() {
-            console.log(this.api.steps);
-
-            // Add the results page
-            this.api.steps("Results");
-
-            
-            this.$emit("complete");
-        }
-    }
 });
 
 </script>
