@@ -1,83 +1,43 @@
 <template>
   <div class="Results">
-    <center class="text-h3 ma-5">You passed {{this.passed}} of 3 tests</center>
+    <!-- <center class="text-h3 ma-5">You passed {{this.passed}} of 3 tests</center> -->
 
     <v-container>
-        <v-row justify="center">
+        <v-row justify="center" v-for="(score, name) in scores" :key="name">
             <vue-ellipse-progress 
                 class='mx-auto my-5'
                 animation="default 2000 0"
-                :color="(cdt >= 50) ? '#8fce00' : '#ff3c3c'"
                 emptyColor="#faf7ff"
                 :size="250"
                 :thickness="15"
                 emptyThickness="10%"
                 fontSize="5rem"
-                :progress="cdt">
+                :color="(score >= 50) ? '#8fce00' : '#ff3c3c'"
+                :progress="Math.round(score)"
+                :loading="score==-1">
                 <template>
                     <span slot='legend-value'>%</span>
-                    <span slot='legend-caption'>Drawing Test</span>
-                </template>
-            </vue-ellipse-progress>
-
-            <vue-ellipse-progress 
-                class='mx-auto my-5'
-                animation="default 2000 2500"
-                :color="(mcog >= 50) ? '#8fce00' : '#ff3c3c'"
-                emptyColor="#faf7ff"
-                :size="250"
-                :thickness="15"
-                emptyThickness="10%"
-                fontSize="5rem"
-                :progress="mcog">
-                <template>
-                    <span slot='legend-value'>%</span>
-                    <span slot='legend-caption'>Recall Test</span>
-                </template>
-            </vue-ellipse-progress>
-
-            <vue-ellipse-progress 
-                class='mx-auto my-5'
-                animation="default 2000 5000"
-                :color="(cvft >= 50) ? '#8fce00' : '#ff3c3c'"
-                emptyColor="#faf7ff"
-                :size="250"
-                :thickness="15"
-                emptyThickness="10%"
-                fontSize="5rem"
-                :progress="cvft">
-                <template>
-                    <span slot='legend-value'>%</span>
-                    <span slot='legend-caption'>Verbal Test</span>
+                    <span slot='legend-caption'>{{ name }}</span>
                 </template>
             </vue-ellipse-progress>
         </v-row>
+
     </v-container>
 
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { API } from "@/model/Data";
+import Vue, { toRefs } from "vue";
+import { data } from "@/model/Data";
 import { VueEllipseProgress } from "vue-ellipse-progress";
 
-const api = API.getInstance();
-
 export default Vue.extend({
-    data: () => ({
-        cdt: Math.round(api.cdt),
-        cvft: Math.round(api.cvft),
-        mcog: Math.round(api.mcog),
-        passed: 0
+    setup: () => ({
+        // Stupid Reactivity, I will actually kill you
+        ...toRefs(data)
     }),
 
     components: {VueEllipseProgress},
-
-    mounted() {
-        this.passed += this.cdt >= 50 ? 1 : 0;
-        this.passed += this.cvft >= 50 ? 1 : 0;
-        this.passed += this.mcog >= 50 ? 1 : 0;
-    }
 });
 </script>

@@ -13,7 +13,7 @@
                     item-text="sex"
                     item-value="val"
                     :items="[{sex: 'Male', val: 0}, {sex: 'Female', val: 1}]"
-                    v-model="api.val"
+                    v-model="gender"
 
                     :rules="[(v) => !!v || 'Please Select a Gender']"
                     required
@@ -85,14 +85,13 @@
 </template>
 
 <script lang="ts">
-import { API } from "@/model/Data";
+import { data } from "@/model/Data";
 import Vue from "vue";
 import NumberInputSpinner from "vue-number-input-spinner";
-import Selection from "@/views/Selection.vue";
 export default Vue.extend({
     
     data: () => ({
-        api: API.getInstance(),
+        api: data,
         gender: {val: -1},
         edu: 0,
         details: 0,
@@ -101,7 +100,7 @@ export default Vue.extend({
         activePicker: "YEAR",
     }),
 
-    components: {NumberInputSpinner, Selection},
+    components: {NumberInputSpinner},
 
     watch: {
         menu(val) {

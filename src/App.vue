@@ -3,7 +3,7 @@
         <transition name="fade" mode="out-in"> <!-- Animate in when doing test -->
             <ProgressBar
                 style="align: center;"
-                :steps="api.steps"
+                :steps="data.steps"
                 :active-step="step"
                 :highestStep="highestStep"
                 :isReactive="false"
@@ -29,15 +29,15 @@
 <script lang="ts">
 import Vue from "vue";
 import ProgressBar from "@/components/ProgressBar.vue";
-import {API} from "@/model/Data";
+import {data} from "@/model/Data";
 
 export default Vue.extend({
     name: "App",
     components: {ProgressBar},
     data: () => ({
         step: -1,
+        data,
         highestStep: -1,
-        api: API.getInstance(),
         anim: "fade",
         isHome: true
     }),
@@ -52,7 +52,7 @@ export default Vue.extend({
         $route (to) { // Changes Progress bar accordingly
 
             // What is the next index position
-            var next: number = this.api.steps.indexOf(to.name);
+            var next: number = this.data.steps.indexOf(to.name);
 
             // Handles Animation Slide Direction
             if (next < this.step) this.anim = "slider-left";
@@ -70,7 +70,7 @@ export default Vue.extend({
     methods: {
         onStepChanged(step: number) {
             // Update the router
-            this.$router.push("/" + this.api.steps[step]);
+            this.$router.push("/" + this.data.steps[step]);
         },
 
         unlockStep() {

@@ -1,23 +1,21 @@
-export class API {
-    private static inst: API;
+import {reactive} from "vue";
 
-    public static getInstance(): API {
-        if (API.inst == null) API.inst = new API();
-        return API.inst;
-    }
+/**
+ * Globally accessible data will be available here (all reactive)
+ */
 
-    public gender = 0;
-    public age = 0;
-    public edu = 0;
-    public cvft = 80;
+export const data = reactive({
+    // Some information on the user
+    gender: 0,
+    age: 0,
+    edu: 0,
+    steps: [],
 
-    public cdt = 20;
-
-    public mcog = 0;
-    public words = ["apple", "penny", "table"];
-
+    scores: {},
     
-    public tests = [
+    words: ["apple", "penny", "table"],
+    
+    tests: [
         {
             name: "Verbal Test",
             steps: ["CVFT", "Results"]
@@ -34,5 +32,5 @@ export class API {
             name: "All Tests",
             steps: ["Memory", "CDT", "Recall", "CVFT", "Results"]
         },
-    ];
-}
+    ],
+});

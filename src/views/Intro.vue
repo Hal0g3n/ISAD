@@ -29,10 +29,10 @@
 import Vue from "vue";
 import Info from "@/views/Info.vue";
 import Selection from "@/views/Selection.vue";
-import {API} from "@/model/Data";
+import {data} from "@/model/Data";
 
 export default Vue.extend({
-    data: () => ({show: 0, api: API.getInstance()}),
+    data: () => ({show: 0, api: data}),
     components: {Info, Selection},
 });
 

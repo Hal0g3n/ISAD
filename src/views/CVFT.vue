@@ -32,9 +32,7 @@
 import Vue from "vue";
 import AudioRecorder from "@/components/AudioRecorder.vue";
 import axios from "axios";
-import { API } from "@/model/Data";
-
-const api = API.getInstance();
+import { data } from "@/model/Data";
 
 export default Vue.extend({
     components: { AudioRecorder },
@@ -46,20 +44,22 @@ export default Vue.extend({
     methods: { 
         upload(recording) {
             var form = new FormData();
-            form.append("gender", api.gender);
-            form.append("age", api.age);
-            form.append("education", api.edu);
+            form.append("gender", data.gender);
+            form.append("age", data.age);
+            form.append("education", data.edu);
             form.append("audio", recording.blob, "audio");
 
+            // Indicate Test exists
+            data.scores["Verbal Test"] = -1;
+
+            // Post Request
             axios.post("https://pearson.pythonanywhere.com/predict", form).then(
-                (result) => { 
-                    api.cvft = result.data.response * 100;
-                    console.log(result); 
-                    this.$emit("complete");
-                }, 
-                (error) => { console.log(error); },
+                (result) => data.scores = {...data.scores, "Verbal Test": result.data.response * 100}, 
+                (error) => console.log(error),
             );
 
+            // State its completion
+            this.$emit("complete");
         }
     },
 });

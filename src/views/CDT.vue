@@ -40,9 +40,7 @@
 import Vue from "vue";
 import ImageChooser from "@/components/ImageChooser.vue";
 import axios from "axios";
-import { API } from "@/model/Data";
-
-const api = API.getInstance();
+import { data } from "@/model/Data";
 
 export default Vue.extend({
     components: {ImageChooser},
@@ -56,14 +54,14 @@ export default Vue.extend({
         uploadFile(file) {
             // Checks if file is actually an image
             if (file.file.type.substring(0, 5) != "image") {
-                console.log("KMS");
                 this.error = "File is not an image";
                 return;
             }
 
+            // Nullify the error
             this.error = null;
-            console.log(file);
             
+            // Simple animation
             this.progress = 0;
             var anim = setInterval(() => {
                 if (this.progress >= 100) {
@@ -73,18 +71,25 @@ export default Vue.extend({
                 else this.progress += 1;
             }, 10);
 
+
+            // Prepare post request
             var form = new FormData();
             form.append("filename", file.file.name);
+            
+            // Indicate Test exists
+            data.scores["Drawing Test"] = -1;
 
+            // Go and fetch the result
             axios.post("https://pearson.pythonanywhere.com/predict2", form).then(
-                (result) => { 
-                    console.log(result); 
-                    api.cdt = result.data.response * 100;
+                (result) => {  
+                    this.$set(data, "scores", {...data.scores, "Drawing Test": result.data.response * 100});
                     clearInterval(anim);
-                    this.$emit("complete");
                 }, 
-                (error) => { console.log(error); },
+                (error) => console.log(error),
             );
+
+            // Completed test
+            this.$emit("complete");
         }
     }
 });

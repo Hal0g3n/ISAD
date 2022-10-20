@@ -15,19 +15,17 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { API } from "@/model/Data";
-
-const api = API.getInstance();
+import { data } from "@/model/Data";
 
 export default Vue.extend({
     data: () => ({
-        words: api.words, 
+        data,
         recalled: [{value: ""}]
     }),
 
     mounted() {
         this.recalled = [];
-        for (var {} of this.words) 
+        for (var {} of this.data.words) 
             this.recalled.push({value: ""});
     },
 
@@ -35,13 +33,13 @@ export default Vue.extend({
         click() {
             var indices: Set<number> = new Set<number>();
             for (var data of this.recalled)
-                indices.add(api.words.indexOf(data.value.toLowerCase()));
+                indices.add(this.data.words.indexOf(data.value.toLowerCase()));
 
             // One point per correct word, -1 is incorrect so must remove
-            api.mcog = indices.size - (indices.has(-1) ? 1 : 0);
+            this.data.scores["Recall Test"] = indices.size - (indices.has(-1) ? 1 : 0);
 
             // Convert to percentage
-            api.mcog = api.mcog * 100 / api.words.length;
+            this.data.scores["Recall Test"] = this.data.scores["Recall Test"] * 100 / this.data.words.length;
 
             this.$emit("complete", "CVFT");
         }

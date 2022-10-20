@@ -4,7 +4,7 @@
             <h1>Memorise these words</h1>
             
             <div v-if="!seen">
-                <li v-for="word in api.words" :key="word">
+                <li v-for="word in data.words" :key="word">
                     {{ word }}
                 </li>
                 <v-btn class="primary" style="margin-top:3vmin" @click="seen = true;$emit('complete')">Done!</v-btn>
@@ -22,11 +22,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { API } from "@/model/Data";
+import { data } from "@/model/Data";
 
 export default Vue.extend({
     data: () => ({
-        api: API.getInstance(),
+        data,
         seen: false
     }),
 });
