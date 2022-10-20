@@ -3,8 +3,10 @@
     <!-- <center class="text-h3 ma-5">You passed {{this.passed}} of 3 tests</center> -->
 
     <v-container>
-        <v-row justify="center" v-for="(score, name) in scores" :key="name">
+        
+        <v-row justify="center">
             <vue-ellipse-progress 
+                v-for="(score, name) in scores" :key="name"
                 class='mx-auto my-5'
                 animation="default 2000 0"
                 emptyColor="#faf7ff"
