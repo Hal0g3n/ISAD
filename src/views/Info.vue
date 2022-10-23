@@ -28,35 +28,25 @@
         <v-row>
             <v-col cols=12>
                 <h2 class="subheading grey--text">Birthday</h2>
-                
-                <v-menu
-                    v-model="menu"
-                    :close-on-content-click="false"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="auto"
-                    >
+
+                <VueDatePicker 
+                    ref="menu"
+                    @onOpen="menu = true"
+                    @onClose="menu = false"
                     
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                            v-model="date"
-                            label="Date of Birth"
-                            prepend-icon="mdi-calendar"
-                            readonly        
-                            
-                            :rules="[(v) => !!v || 'Please Select a Date']"
-                            required
+                    v-model="date"
+                    format="YYYY-MM-DD"
+                    name="Birthday"
+                    
+                    color=#9f4fff
+                    
+                    placeholder="Choose birthday"
+                    no-header
+                    fullscreen-mobile
 
-                            v-bind="attrs"
-                            v-on="on"/>
-                    </template>
-
-                    <v-date-picker
-                        :active-picker.sync="activePicker"
-                        v-model="date"
-                        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
-                    ></v-date-picker>
-                </v-menu>
+                    :min-date="`${new Date().getFullYear()-100}`"
+                    :max-date="new Date()"   
+                    />
 
             </v-col>
         </v-row>
@@ -88,6 +78,10 @@
 import { data } from "@/model/Data";
 import Vue from "vue";
 import NumberInputSpinner from "vue-number-input-spinner";
+
+import {VueDatePicker} from "@mathieustan/vue-datepicker";
+import "@mathieustan/vue-datepicker/dist/vue-datepicker.min.css";
+
 export default Vue.extend({
     
     data: () => ({
@@ -100,11 +94,11 @@ export default Vue.extend({
         activePicker: "YEAR",
     }),
 
-    components: {NumberInputSpinner},
+    components: {NumberInputSpinner, VueDatePicker},
 
     watch: {
         menu(val) {
-            val && setTimeout(() => (this.activePicker = "YEAR"));
+            val && setTimeout(() => (this.$refs.menu.$refs.agenda.mode = 'year'));
         }
     },
 
@@ -124,6 +118,10 @@ export default Vue.extend({
 
             this.$emit("complete");
         }
+    },
+
+    mounted() {
+        console.log(new Date());
     }
 });
 </script>

@@ -22,3 +22,8 @@ declare module "vue-number-input-spinner" {
     import NumberInputSpinner from "vue-number-input-spinner";
     export default NumberInputSpinner;
 }
+
+declare module "@mathieustan/vue-datepicker" {
+    import VueDatePicker from "@mathieustan/vue-datepicker";
+    export default VueDatePicker;
+}
