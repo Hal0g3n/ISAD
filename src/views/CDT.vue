@@ -1,7 +1,7 @@
 <template>
     <div class = "CDT"> <transition name=fade mode=out-in>
         <v-container v-if="!ready" key="Prep">
-            <h1>Test Requirements</h1>
+            <h1>Requirements</h1>
             For this test, you will require:
             <li>Blank White Paper</li>
             <li>Your device's camera</li>
@@ -9,7 +9,7 @@
         </v-container>
 
         <v-container v-else key="CDT">
-            <h1>Clock Drawing Test</h1>
+            <h1>Drawing Test</h1>
 
             Without referencing anything, draw a analog clock showing 10 past 11. <br>
             Then upload a picture of the drawn clock. <br>
