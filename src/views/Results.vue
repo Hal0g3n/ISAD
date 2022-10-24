@@ -29,15 +29,17 @@
 
         <div v-if="loaded">
             <center class="text-h3">You passed {{passed}} of {{tests.length}} tests</center>
-            <center class="text-h4 my-1">{{ message }}</center>
+            <center class="text-h4 my-1 mb-5">{{ message }}</center>
 
-            <span v-if="passed < tests.length">
-                <center class="text-h6 mt-5">Consider calling the hotlines below</center>
+            <div v-if="passed < tests.length" style="border: 1vmin solid black">
+                <center class="text-h6">Consider calling the hotlines below</center>
 
-                Dementia Singapore: 6377 0700               <br>
-                AIC Hotline: 1800-650-6060                  <br>
-                Health Promotion Board (HPB): 1800-223-1313 <br>
-            </span>
+                <div class=ma-1>
+                    Dementia Singapore: 6377 0700               <br>
+                    AIC Hotline: 1800-650-6060                  <br>
+                    Health Promotion Board (HPB): 1800-223-1313 <br>
+                </div>
+            </div>
         </div>
 
     </v-container>
