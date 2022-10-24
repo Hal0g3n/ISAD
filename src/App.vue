@@ -63,11 +63,6 @@ export default Vue.extend({
 
             // Set step to next step
             this.step = next;
-
-            history.pushState(null, "", location.href);
-            window.onpopstate = function () {
-                history.go(1);
-            };
         }
     },
 
