@@ -4,13 +4,12 @@
             <h1>Test Selection</h1>
             
             <div v-for="test in data.tests" :key="test">
-                <v-btn style="margin:2vh 0"
+                <v-btn style="margin:2vh 0; font-size:1.2rem"
                     block
                     depressed
                     outlined
                     raised
                     rounded
-                    text
                     @click="data.steps=test.steps; $emit('selected')">
                     {{ test.name }}
                 </v-btn>

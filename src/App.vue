@@ -1,5 +1,5 @@
 <template>
-    <v-app style="backgroundColor: #faf6ff">
+    <v-app style="backgroundColor: #faf6ff; font-size: 1.5rem">
         <transition name="fade" mode="out-in"> <!-- Animate in when doing test -->
             <ProgressBar
                 style="align: center;"
