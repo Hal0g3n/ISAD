@@ -11,7 +11,7 @@
         
         
         <v-container v-else key="CDT">
-            <h1 class="subheading grey--text">Verbal Fluency Test</h1>
+            <h1>Verbal Fluency Test</h1>
 
             Say as many unique animal names in 60 seconds. <br/>
             You only have <b>1</b> attempt. <br/>

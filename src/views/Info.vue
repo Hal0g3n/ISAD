@@ -15,7 +15,7 @@
                     :items="[{sex: 'Male', val: 0}, {sex: 'Female', val: 1}]"
                     v-model="gender"
 
-                    :rules="[(v) => !!v || 'Please Select a Gender']"
+                    :rules="[(v) => v.val!=-1 || 'Please Select a Gender']"
                     required
 
                     outlined>

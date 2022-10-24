@@ -9,7 +9,7 @@
         </v-container>
 
         <v-container v-else key="CDT">
-            <h1 class="subheading grey--text">Clock Drawing Test</h1>
+            <h1>Clock Drawing Test</h1>
 
             Without referencing anything, draw a analog clock showing 10 past 11. <br>
             Then upload a picture of the drawn clock. <br>
@@ -82,7 +82,7 @@ export default Vue.extend({
             // Go and fetch the result
             axios.post("https://pearson.pythonanywhere.com/predict2", form).then(
                 (result) => {  
-                    this.$set(data, "scores", {...data.scores, "Drawing Test": result.data.response * 100});
+                    data.scores = {...data.scores, "Drawing Test": result.data.response * 100};
                     clearInterval(anim);
                 }, 
                 (error) => console.log(error),

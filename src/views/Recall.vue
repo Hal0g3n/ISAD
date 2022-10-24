@@ -1,7 +1,7 @@
 <template>
   <div class="Recall">
     <v-container class=my-5 fill-height>
-        <v-row><h1 class="subheading grey--text">Recall Test</h1></v-row>
+        <v-row><h1>Recall Test</h1></v-row>
 
         <v-row><div>Type out the words you memorised just now</div></v-row>
 

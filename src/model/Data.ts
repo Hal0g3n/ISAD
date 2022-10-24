@@ -11,7 +11,7 @@ export const data = reactive({
     edu: 0,
     steps: [],
 
-    scores: {},
+    scores: {} as { [key: string]: number; },
     
     words: ["apple", "penny", "table"],
     
