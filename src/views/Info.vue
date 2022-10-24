@@ -119,9 +119,5 @@ export default Vue.extend({
             this.$emit("complete");
         }
     },
-
-    mounted() {
-        console.log(new Date());
-    }
 });
 </script>

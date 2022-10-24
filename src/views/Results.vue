@@ -117,9 +117,9 @@ export default Vue.extend({
 
         message() {
             var percent = this.passed / this.tests.length * 100;
-            if (percent > 80) return "You probably do not have Alzheimer's";
-            else if (percent > 50) return "You might not have Alzheimer's";
-            else if (percent > 20) return "You might have Alzheimer's";
+            if (percent >= 80) return "You probably do not have Alzheimer's";
+            else if (percent >= 50) return "You might not have Alzheimer's";
+            else if (percent >= 20) return "You might have Alzheimer's";
             else return "You most likely have Alzheimer's";
         }
     },
