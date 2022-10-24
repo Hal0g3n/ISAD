@@ -4,9 +4,9 @@
             <center v-if="show == 0">
                 <img class=ma-10 style="height:50vmin; width=50vmin" src="@/assets/logo.svg"/>
                 
-                <p class="text-h6">
+                <p class="text-h6" style="font-size:1rem">
                     Intelligent Screening for Alzheimer's Disease
-                    A simple 10 minute test to check for Alzheimer's.<br>
+                    A simple 10 minute test to check for Alzheimer's.<br> <br>
                     A project by Vikram Ramanathan, James Sng and Yap Yuan Xi
                 </p>
 

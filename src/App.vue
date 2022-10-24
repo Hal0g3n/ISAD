@@ -137,4 +137,8 @@ export default Vue.extend({
 .fade-leave-to {
   opacity: 0;
 }
+
+:root{
+    font-size: 2ch
+}
 </style>

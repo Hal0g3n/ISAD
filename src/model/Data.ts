@@ -25,7 +25,7 @@ export const data = reactive({
             steps: ["CDT", "Results"]
         },
         {
-            name: "Mini Cognitive Test",
+            name: "MiniCog Test",
             steps: ["Memory", "CDT", "Recall", "Results"]
         },
         {

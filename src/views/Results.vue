@@ -34,10 +34,10 @@
             <div v-if="passed < tests.length" style="border: 1vmin solid black">
                 <center class="text-h6">Consider calling the hotlines below</center>
 
-                <div class=ma-1>
+                <div class=ma-1 style=font-size:1.15ch>
                     Dementia Singapore: 6377 0700               <br>
                     AIC Hotline: 1800-650-6060                  <br>
-                    Health Promotion Board (HPB): 1800-223-1313 <br>
+                    Health Promotion Board: 1800-223-1313 <br>
                 </div>
             </div>
         </div>

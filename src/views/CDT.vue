@@ -11,9 +11,11 @@
         <v-container v-else key="CDT">
             <h1>Drawing Test</h1>
 
-            Without referencing anything, draw a analog clock showing 10 past 11. <br>
-            Then upload a picture of the drawn clock. <br>
-            Give yourself 3 minutes to draw the clock. <br>
+            <div style="font-size:1rem" class=my-1>
+            Draw and Upload an analog clock. <br>
+            The clock should show 10 past 11. <br>
+            Give yourself 3 minutes to draw. <br>
+            </div>
 
             <center>
 

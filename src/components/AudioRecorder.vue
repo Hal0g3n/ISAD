@@ -2,7 +2,7 @@
     <button class="AudioRecorder" @click="click" :disabled="recordingEndedAt!=null">
         
         <v-btn v-if="!isRecording" :disabled="recordingEndedAt!=null" x-large class="red" fab>
-            <v-icon color=white>mdi-microphone</v-icon>
+            <v-icon color=white x-large>mdi-microphone</v-icon>
         </v-btn>
         
         <v-btn v-else x-large class="red" color='white' dark rounded>

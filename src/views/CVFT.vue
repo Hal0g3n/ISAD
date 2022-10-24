@@ -13,9 +13,11 @@
         <v-container v-else key="CDT">
             <h1>Verbal Test</h1>
 
-            Say as many unique animal names in 60 seconds. <br/>
-            You only have <b>1</b> attempt. <br/>
+            <div style="font-size: 1rem" class=my-1>
+            Say as many unique animal names as possible. <br/>
+            You only have <b>1</b> minute and <b>1</b> attempt. <br/>
             Press the button to begin! <br>
+            </div>
 
             <center>
                 <AudioRecorder @result="upload"/>
