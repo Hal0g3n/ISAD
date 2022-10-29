@@ -38,7 +38,7 @@ export default {
     },
 
     methods: {
-        updater: false,
+        updater: null,
         async initiatePlayer() { // Initializes the player
             this.audioContext = new (window.AudioContext ||
                 window.webkitAudioContext)();

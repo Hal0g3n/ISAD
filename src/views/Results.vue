@@ -31,10 +31,10 @@
             <center class="text-h3">You passed {{passed}} of {{tests.length}} tests</center>
             <center class="text-h4 my-1 mb-5">{{ message }}</center>
 
-            <div v-if="passed < tests.length" style="border: 1vmin solid black">
+            <div v-if="passed < tests.length" style="margin: 0 max(0px, calc(100vw - 70rem)); border: 1vmin solid black">
                 <center class="text-h6">Consider calling the hotlines below</center>
 
-                <div class=ma-1 style=font-size:1.15ch>
+                <div class=ma-1 style="font-size:1.15rem;">
                     Dementia Singapore: 6377 0700               <br>
                     AIC Hotline: 1800-650-6060                  <br>
                     Health Promotion Board: 1800-223-1313 <br>

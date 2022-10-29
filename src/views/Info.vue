@@ -118,6 +118,6 @@ export default Vue.extend({
 
             this.$emit("complete");
         }
-    },
+    },  
 });
 </script>

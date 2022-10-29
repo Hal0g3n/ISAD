@@ -79,11 +79,11 @@ export default Vue.extend({
         },
 
         unlockStep() {
-            // Increments the current step
-            ++this.step;
+            // Increments the current step (Bounding it to current max)
+            this.step = Math.min(this.step + 1, this.data.steps.length - 1);
 
-            // Bounds it to the last item in steps
-            this.highestStep = this.step >= 0 ? Math.min(Math.max(this.highestStep, this.step), this.data.steps.length - 1) : -1;
+            // Sets the highest step reached
+            this.highestStep = this.step >= 0 ? Math.max(this.highestStep, this.step) : -1;
 
             // Reroute to expected step
             this.onStepChanged(this.step);
